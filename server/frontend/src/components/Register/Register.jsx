@@ -6,23 +6,25 @@ import password_icon from "../assets/password.png"
 import close_icon from "../assets/close.png"
 
 const Register = () => {
-
+// State variables for form inputs
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setlastName] = useState("");
 
-
+// Redirect to home
   const gohome = ()=> {
     window.location.href = window.location.origin;
   }
 
+// Handle form submission
   const register = async (e) => {
     e.preventDefault();
 
     let register_url = window.location.origin+"/djangoapp/register";
 
+// Send POST request to register endpoint
     const res = await fetch(register_url, {
         method: "POST",
         headers: {
@@ -39,6 +41,7 @@ const Register = () => {
 
     const json = await res.json();
     if (json.status) {
+    // Save username in session and reload home
         sessionStorage.setItem('username', json.userName);
         window.location.href = window.location.origin;
     }
@@ -51,7 +54,7 @@ const Register = () => {
   return(
     <div className="register_container" style={{width: "50%"}}>
       <div className="header" style={{display: "flex",flexDirection: "row", justifyContent: "space-between"}}>
-          <span className="text" style={{flexGrow:"1"}}>SignUp</span>
+          <span className="text" style={{flexGrow:"1"}}>SignUp</span> 
           <div style={{display: "flex",flexDirection: "row", justifySelf: "end", alignSelf: "start" }}>
           <a href="/" onClick={()=>{gohome()}} style={{justifyContent: "space-between", alignItems:"flex-end"}}>
             <img style={{width:"1cm"}} src={close_icon} alt="X"/>

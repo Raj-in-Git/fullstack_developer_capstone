@@ -6,9 +6,11 @@
   <link rel="stylesheet" href="static/bootstrap.min.css">
 <script>
 
+
+// Build logout URL and Make GET request to logout endpoint
 const logout = async (e) =>
 {
-    console.log("Logging out...");
+    console.alert("Logging out...");
   let logout_url = window.location.origin+"/djangoapp/logout";
   const res = await fetch(logout_url, {
     method: "GET",
